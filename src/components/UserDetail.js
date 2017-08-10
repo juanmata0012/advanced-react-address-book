@@ -1,4 +1,6 @@
 import React from "react";
+// import UserInfo from './UserInfo'
+import PropTypes from "prop-types";
 
 
 function UserDetail(props) {
@@ -20,5 +22,8 @@ function UserDetail(props) {
   );
 }
 
+UserDetail.propTypes = {
+  user: PropTypes.object
+};
 
 export default UserDetail;

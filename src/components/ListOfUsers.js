@@ -1,9 +1,15 @@
-import React from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 
 
 class ListOfUsers extends React.Component {
 
+  /*
+  var props = {
+    users:[]
+  }
+  */
   constructor() {
     super();
     this.state = {
@@ -31,8 +37,16 @@ class ListOfUsers extends React.Component {
   render() {
 
     let userDivs = "";
+    const filterUsers = this.props.users.filter((u) => {
+		// var u = {last_name: “bluth”}
+      if (this.state.searchText === "") {
+        return true;
+      }
+
+      return u.last_name.indexOf(this.state.searchText) > -1;
+    });
     if (this.state.visible) {
-      userDivs = this.props.users.map(user => {
+      userDivs = filterUsers.map(user => {
         return (
           <div key={user.id}>
             {user.first_name} {user.last_name}
@@ -62,6 +76,10 @@ class ListOfUsers extends React.Component {
     );
   }
 }
+
+ListOfUsers.propTypes = {
+  users: PropTypes.array
+};
 
 
 export default ListOfUsers;
